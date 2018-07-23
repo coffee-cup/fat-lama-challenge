@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 import { getTransactions } from './api.js';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
+import Title from './components/Title.js';
 
 const tableCell = ({
   id,
@@ -23,6 +28,42 @@ const tableCell = ({
   );
 };
 
+const columns = [
+  {
+    Header: 'Id',
+    accessor: 'id',
+    Cell: cell => <Link to={`/tx/${cell.value}`}>{cell.value}</Link>
+  },
+  {
+    Header: 'Status',
+    accessor: 'status'
+  },
+  {
+    Header: 'From Date',
+    accessor: 'fromDate'
+  },
+  {
+    Header: 'To Date',
+    accessor: 'toDate'
+  },
+  {
+    Header: 'Item',
+    accessor: 'itemId'
+  },
+  {
+    Header: 'Price',
+    accessor: 'price'
+  },
+  {
+    Header: 'Discount',
+    accessor: 'totalDiscount'
+  },
+  {
+    Header: 'Currency',
+    accessor: 'currency'
+  }
+];
+
 class FeedView extends Component {
   constructor(props) {
     super(props);
@@ -41,24 +82,21 @@ class FeedView extends Component {
 
   render() {
     const { transactions } = this.state;
+
     return (
       <div className="feed-view">
-        <h1>Feed View</h1>
+        <Title>Transactions</Title>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Status</th>
-              <th>Start Date</th>
-              <th>From Date</th>
-              <th>Price</th>
-              <th>Discount</th>
-              <th>Currency</th>
-            </tr>
-          </thead>
-          <tbody>{transactions.map(t => tableCell(t))}</tbody>
-        </table>
+        <ReactTable
+          data={transactions}
+          columns={columns}
+          defaultSorted={[
+            {
+              id: 'id',
+              desc: true
+            }
+          ]}
+        />
       </div>
     );
   }

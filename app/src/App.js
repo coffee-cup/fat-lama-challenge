@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import Header from './components/Header.js';
+
 import FeedView from './FeedView.js';
 import TransactionView from './TransactionView.js';
+
+const Wrapper = styled.div`
+  max-width: 60rem;
+  margin: auto;
+`;
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
-          </header>
+          <Header />
 
-          <Route exact path="/" component={FeedView} />
-          <Route path="/tx/:id" component={TransactionView} />
+          <Wrapper>
+            <Route exact path="/" component={FeedView} />
+            <Route path="/tx/:id" component={TransactionView} />
+          </Wrapper>
         </div>
       </Router>
     );
