@@ -1,9 +1,13 @@
 const apiUrl = route => `http://localhost:8080/${route}`;
-const transactionRoute = page => apiUrl(`transactions/${page}`);
+const transactionsRoute = page => apiUrl(`transactions/${page}`);
+const transactionRoute = id => apiUrl(`transaction/${id}`);
 
-export const getTransactions = page => {
-  const url = transactionRoute((page = 0));
-  return fetch(url, { method: 'GET', mode: 'cors' })
+export const getTransactions = (page = 0) =>
+  fetch(transactionsRoute(page), { method: 'GET', mode: 'cors' })
     .then(res => res.json())
     .catch(console.error);
-};
+
+export const getTransactionById = id =>
+  fetch(transactionRoute(id), { method: 'GET', mode: 'cors' })
+    .then(res => res.json())
+    .catch(console.error);
