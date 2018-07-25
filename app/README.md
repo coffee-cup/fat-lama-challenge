@@ -1,4 +1,4 @@
-## Building
+## Building and Running
 
 The React app is located in `app/`. In that directory, the dependcies can be
 installed with [yarn](https://yarnpkg.com/lang/en/).
