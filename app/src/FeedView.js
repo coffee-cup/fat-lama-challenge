@@ -65,11 +65,13 @@ class FeedView extends Component {
   // Fetch and load next page of results
   nextPage() {
     const { lastPage, transactions, maxPage } = this.state;
+
+    /* Uncomment to prevent fetching all transactions when page loads */
     // prevent unnecessary requests by only fetching next page
     // if user can see the end of the current fetched transactions
-    if (lastPage > maxPage) {
-      return;
-    }
+    // if (lastPage > maxPage) {
+    //   return;
+    // }
 
     getTransactions(lastPage + 1)
       .then(newPage => {
@@ -101,8 +103,8 @@ class FeedView extends Component {
           columns={columns}
           defaultSorted={[
             {
-              id: 'id',
-              desc: true
+              id: 'status',
+              desc: false
             }
           ]}
           showPageSizeOptions={false}
