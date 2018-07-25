@@ -11,7 +11,7 @@ import UserView from './UserView.js';
 const Wrapper = styled.div`
   max-width: 80rem;
   margin: auto;
-  padding: 0 2rem;
+  padding: 0 1rem 2rem 1rem;
   color: ${colours.dark};
 `;
 
