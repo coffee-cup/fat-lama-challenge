@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import { getUser } from './api.js';
 import 'react-table/react-table.css';
-import Title from './components/Title.js';
 
-const ProfileImage = styled.img`
-  max-width: 12rem;
-  max-height: 12rem;
-`;
+import { getUser } from './api.js';
+import Title from './components/Title.js';
+import ProfileImage from './components/ProfileImage.js';
 
 class UserView extends Component {
   constructor(props) {
@@ -17,18 +13,16 @@ class UserView extends Component {
       userId: props.match.params.id,
       user: {}
     };
-    console.log(this.state);
   }
 
   componentWillMount() {
     getUser(this.state.userId).then(user => {
-      console.log(user);
       this.setState({ user });
     });
   }
 
   render() {
-    const { user } = this.state;
+    const { user } = this.state || {};
 
     return (
       <div className="user-view">

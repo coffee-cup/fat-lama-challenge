@@ -2,35 +2,12 @@ import React, { Component } from 'react';
 import StyledLink from './components/StyledLink.js';
 import ReactLoading from 'react-loading';
 import Select from 'react-select';
-import styled from 'styled-components';
-import Title from './components/Title.js';
-import { colours } from './styles.js';
-import { updateTransactionStatus, getTransactionById } from './api.js';
 import moment from 'moment';
 
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 0.8rem 0;
-
-  > div {
-    width: 20rem;
-  }
-
-  > span:first-child {
-    display: inline-block;
-    min-width: 6rem;
-    padding-right: 1rem;
-    font-weight: bold;
-  }
-`;
-
-const InfoCell = ({ name, children }) => (
-  <Row>
-    <span>{name}</span>
-    {children}
-  </Row>
-);
+import { updateTransactionStatus, getTransactionById } from './api.js';
+import { colours } from './styles.js';
+import Title from './components/Title.js';
+import InfoCell from './components/InfoCell.js';
 
 const statusOptions = [
   { value: 'ESCROW', label: 'ESCROW' },

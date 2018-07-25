@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { getTransactions } from './api.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import Title from './components/Title.js';
 import moment from 'moment';
+
+import { getTransactions } from './api.js';
+import Title from './components/Title.js';
 
 const dateCell = cell => moment(cell.value).format('Do MMM YY');
 
@@ -61,9 +62,11 @@ class FeedView extends Component {
     this.nextPage();
   }
 
+  // Fetch and load next page of results
   nextPage() {
     const { lastPage, transactions, maxPage } = this.state;
-    console.log(`lastPage: ${lastPage} maxPage: ${maxPage}`);
+    // prevent unnecessary requests by only fetching next page
+    // if user can see the end of the current fetched transactions
     if (lastPage > maxPage) {
       return;
     }
@@ -83,13 +86,7 @@ class FeedView extends Component {
 
   pageSizeChange(page) {
     const { maxPage } = this.state;
-    console.log(page);
-    this.setState(
-      {
-        maxPage: Math.max(maxPage, page)
-      },
-      () => this.nextPage()
-    );
+    this.setState({ maxPage: Math.max(maxPage, page) }, () => this.nextPage());
   }
 
   render() {
