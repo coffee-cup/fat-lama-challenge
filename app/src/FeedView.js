@@ -69,15 +69,23 @@ class FeedView extends Component {
     super(props);
 
     this.state = {
+      lastPage: -1,
       transactions: []
     };
   }
 
-  componentWillMount() {
-    getTransactions().then(transactions => {
-      console.log(transactions);
-      this.setState({ transactions });
+  nextPage() {
+    const { lastPage } = this.state;
+    getTransactions(lastPage + 1).then(transactions => {
+      this.setState({
+        transactions,
+        lastPage: lastPage + 1
+      });
     });
+  }
+
+  componentWillMount() {
+    this.nextPage();
   }
 
   render() {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { getTransactionById } from './api.js';
 import Title from './components/Title.js';
@@ -14,10 +15,10 @@ const Row = styled.div`
   }
 `;
 
-const InfoCell = ({ name, value }) => (
+const InfoCell = ({ name, value, link }) => (
   <Row>
     <span>{name}</span>
-    <span>{value}</span>
+    {link ? <Link to={link}>{value}</Link> : <span>{value}</span>}
   </Row>
 );
 
@@ -51,8 +52,16 @@ class TransactionView extends Component {
           <InfoCell name="Price" value={tx.price} />
           <InfoCell name="Currency" value={tx.currency} />
           <InfoCell name="Discount" value={tx.totalDiscount} />
-          <InfoCell name="Borrower" value={tx.borrowerId} />
-          <InfoCell name="Lender" value={tx.lenderId} />
+          <InfoCell
+            name="Borrower"
+            value={tx.borrowerId}
+            link={`/user/${tx.borrowerId}`}
+          />
+          <InfoCell
+            name="Lender"
+            value={tx.lenderId}
+            link={`/user/${tx.lenderId}`}
+          />
         </div>
       </div>
     );

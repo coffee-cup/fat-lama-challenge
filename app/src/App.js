@@ -6,6 +6,7 @@ import { colours } from './styles.js';
 
 import FeedView from './FeedView.js';
 import TransactionView from './TransactionView.js';
+import UserView from './UserView.js';
 
 const Wrapper = styled.div`
   max-width: 80rem;
@@ -24,6 +25,7 @@ class App extends Component {
 
             <Route exact path="/" component={FeedView} />
             <Route path="/tx/:id" component={TransactionView} />
+            <Route path="/user/:id" component={UserView} />
           </Wrapper>
         </div>
       </Router>
