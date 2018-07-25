@@ -14,12 +14,12 @@ const Row = styled.div`
   padding: 0.8rem 0;
 
   > div {
-    min-width: 16rem;
+    width: 20rem;
   }
 
   > span:first-child {
     display: inline-block;
-    min-width: 8rem;
+    min-width: 6rem;
     padding-right: 1rem;
     font-weight: bold;
   }
@@ -35,6 +35,7 @@ const InfoCell = ({ name, children }) => (
 const statusOptions = [
   { value: 'ESCROW', label: 'ESCROW' },
   { value: 'PRE_AUTHORIZED', label: 'PRE_AUTHORIZED' },
+  { value: 'PRE_AUTHORIZED_CANCELLED', label: 'PRE_AUTHORIZED_CANCELLED' },
   { value: 'FL_APPROVED', label: 'FL_APPROVED' },
   { value: 'PAID', label: 'PAID' }
 ];
