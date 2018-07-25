@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { getUser } from './api.js';
-import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import Title from './components/Title.js';
 
