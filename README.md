@@ -22,6 +22,7 @@ With some more time and requirements I would like to improve,
 - Overall look and feel. It is currently very simple and functional, but can be
   made to _prettier_.
 - Add unit tests
+- Investigate 500 server errors on server-side
 
 ## Challenge:
 
