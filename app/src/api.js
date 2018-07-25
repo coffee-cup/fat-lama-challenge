@@ -4,25 +4,21 @@ const transactionRoute = id => apiUrl(`transaction/${id}`);
 const userRoute = id => apiUrl(`user/${id}`);
 
 export const getTransactions = (page = 0) =>
-  fetch(transactionsRoute(page), { method: 'GET', mode: 'cors' })
-    .then(res => res.json())
-    .catch(console.error);
+  fetch(transactionsRoute(page), { method: 'GET', mode: 'cors' }).then(res =>
+    res.json()
+  );
 
 export const getTransactionById = id =>
-  fetch(transactionRoute(id), { method: 'GET', mode: 'cors' })
-    .then(res => res.json())
-    .catch(console.error);
+  fetch(transactionRoute(id), { method: 'GET', mode: 'cors' }).then(res =>
+    res.json()
+  );
 
 export const getUser = id =>
-  fetch(userRoute(id), { method: 'GET', mode: 'cors' })
-    .then(res => res.json())
-    .catch(console.error);
+  fetch(userRoute(id), { method: 'GET', mode: 'cors' }).then(res => res.json());
 
 export const updateTransactionStatus = (id, status) =>
   fetch(transactionRoute(id), {
     method: 'PUT',
     mode: 'cors',
     body: JSON.stringify({ status })
-  })
-    .then(res => res.json())
-    .catch(console.error);
+  }).then(res => res.json());

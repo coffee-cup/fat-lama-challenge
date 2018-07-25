@@ -1,32 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import styled, { css } from 'styled-components';
 import { getTransactions } from './api.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import Title from './components/Title.js';
-
-const tableCell = ({
-  id,
-  fromDate,
-  startDate,
-  status,
-  price,
-  totalDiscount,
-  currency
-}) => {
-  return (
-    <tr key={id}>
-      <td>{id}</td>
-      <td>{status}</td>
-      <td>{startDate}</td>
-      <td>{fromDate}</td>
-      <td>{price}</td>
-      <td>{totalDiscount}</td>
-      <td>{currency}</td>
-    </tr>
-  );
-};
 
 const columns = [
   {
@@ -70,22 +47,44 @@ class FeedView extends Component {
 
     this.state = {
       lastPage: -1,
+      maxPage: 0,
       transactions: []
     };
   }
 
-  nextPage() {
-    const { lastPage } = this.state;
-    getTransactions(lastPage + 1).then(transactions => {
-      this.setState({
-        transactions,
-        lastPage: lastPage + 1
-      });
-    });
-  }
-
   componentWillMount() {
     this.nextPage();
+  }
+
+  nextPage() {
+    const { lastPage, transactions, maxPage } = this.state;
+    console.log(`lastPage: ${lastPage} maxPage: ${maxPage}`);
+    if (lastPage > maxPage) {
+      return;
+    }
+
+    getTransactions(lastPage + 1)
+      .then(newPage => {
+        if (newPage) {
+          this.setState({
+            transactions: transactions.concat(newPage),
+            lastPage: lastPage + 1
+          });
+          this.nextPage();
+        }
+      })
+      .catch(console.error);
+  }
+
+  pageSizeChange(page) {
+    const { maxPage } = this.state;
+    console.log(page);
+    this.setState(
+      {
+        maxPage: Math.max(maxPage, page)
+      },
+      () => this.nextPage()
+    );
   }
 
   render() {
@@ -104,6 +103,9 @@ class FeedView extends Component {
               desc: true
             }
           ]}
+          showPageSizeOptions={false}
+          defaultPageSize={20}
+          onPageChange={this.pageSizeChange.bind(this)}
         />
       </div>
     );
