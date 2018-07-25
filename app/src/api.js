@@ -17,3 +17,12 @@ export const getUser = id =>
   fetch(userRoute(id), { method: 'GET', mode: 'cors' })
     .then(res => res.json())
     .catch(console.error);
+
+export const updateTransactionStatus = (id, status) =>
+  fetch(transactionRoute(id), {
+    method: 'PUT',
+    mode: 'cors',
+    body: JSON.stringify({ status })
+  })
+    .then(res => res.json())
+    .catch(console.error);
