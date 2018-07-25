@@ -94,12 +94,10 @@ class TransactionView extends Component {
         <InfoCell name="Currency">{tx.currency}</InfoCell>
         <InfoCell name="Discount">{tx.totalDiscount} </InfoCell>
         <InfoCell name="Borrower">
-          <StyledLink to={`/users/${tx.borrowerId}`}>
-            {tx.borrowerId}
-          </StyledLink>
+          <StyledLink to={`/user/${tx.borrowerId}`}>{tx.borrowerId}</StyledLink>
         </InfoCell>
         <InfoCell name="Lender">
-          <StyledLink to={`/users/${tx.lenderId}`}>{tx.lenderId}</StyledLink>
+          <StyledLink to={`/user/${tx.lenderId}`}>{tx.lenderId}</StyledLink>
         </InfoCell>
       </div>
     );
