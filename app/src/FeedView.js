@@ -4,6 +4,9 @@ import { getTransactions } from './api.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import Title from './components/Title.js';
+import moment from 'moment';
+
+const dateCell = cell => moment(cell.value).format('Do MMM YY');
 
 const columns = [
   {
@@ -17,11 +20,13 @@ const columns = [
   },
   {
     Header: 'From Date',
-    accessor: 'fromDate'
+    accessor: 'fromDate',
+    Cell: dateCell
   },
   {
     Header: 'To Date',
-    accessor: 'toDate'
+    accessor: 'toDate',
+    Cell: dateCell
   },
   {
     Header: 'Item',

@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Title from './components/Title.js';
 import { colours } from './styles.js';
 import { updateTransactionStatus, getTransactionById } from './api.js';
+import moment from 'moment';
 
 const Row = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ const Row = styled.div`
   padding: 0.8rem 0;
 
   > div {
-    min-width: 14rem;
+    min-width: 16rem;
   }
 
   > span:first-child {
@@ -34,7 +35,8 @@ const InfoCell = ({ name, children }) => (
 const statusOptions = [
   { value: 'ESCROW', label: 'ESCROW' },
   { value: 'PRE_AUTHORIZED', label: 'PRE_AUTHORIZED' },
-  { value: 'FL_APPROVED', label: 'FL_APPROVED' }
+  { value: 'FL_APPROVED', label: 'FL_APPROVED' },
+  { value: 'PAID', label: 'PAID' }
 ];
 
 class TransactionView extends Component {
@@ -93,6 +95,12 @@ class TransactionView extends Component {
         <InfoCell name="Price">{tx.price}</InfoCell>
         <InfoCell name="Currency">{tx.currency}</InfoCell>
         <InfoCell name="Discount">{tx.totalDiscount} </InfoCell>
+        <InfoCell name="Start Date">
+          {moment(tx.startDate).format('Do MMM YY')}
+        </InfoCell>
+        <InfoCell name="From Date">
+          {moment(tx.fromDate).format('Do MMM YY')}
+        </InfoCell>
         <InfoCell name="Borrower">
           <StyledLink to={`/user/${tx.borrowerId}`}>{tx.borrowerId}</StyledLink>
         </InfoCell>
