@@ -14,7 +14,8 @@ const statusOptions = [
   { value: 'PRE_AUTHORIZED', label: 'PRE_AUTHORIZED' },
   { value: 'PRE_AUTHORIZED_CANCELLED', label: 'PRE_AUTHORIZED_CANCELLED' },
   { value: 'FL_APPROVED', label: 'FL_APPROVED' },
-  { value: 'PAID', label: 'PAID' }
+  { value: 'PAID', label: 'PAID' },
+  { value: 'CANCELLED', label: 'CANCELLED' }
 ];
 
 class TransactionView extends Component {
